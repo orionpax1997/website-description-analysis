@@ -1,0 +1,14 @@
+.DS_STORE
+
+dist/
+bin/
+node_modules/
+
+# Include when developing application packages.
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
+
+
+# Husky
+.husky/_
