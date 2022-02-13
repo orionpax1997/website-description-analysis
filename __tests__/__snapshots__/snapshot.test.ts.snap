@@ -4,7 +4,7 @@ exports[`get description function analysis https://blog.51cto.com/u_15349616/371
 Object {
   "description": "Oracle导出导入dmp文件(exp.imp命令行)【附源码】，1.说明使用Oracle命令行导出导入dmp文件，从而在两个数据库之间快速转移数据，也可以用来作为数据库的备份，将来可以快速恢复数据。命令：导出exp、导入imp步骤：使用Oracle的exp命令将指定数据库导出为dmp文件;然后将dmp文件上传到需要导入的数据库所在服务器;使用Oracle的imp命令将dmp文件导入指定数据库。2.导出exp在Oracle数据库...",
   "favicon": "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://blog.51cto.com/u_15349616/3717558&size=16",
-  "image": undefined,
+  "image": "https://blog.51cto.com/qr/qr-url?url=https%3A%2F%2Fblog.51cto.com%2Fu_15349616%2F3717558",
   "title": "Oracle导出导入dmp文件(exp.imp命令行)",
   "url": "https://blog.51cto.com/u_15349616/3717558",
 }
@@ -14,7 +14,7 @@ exports[`get description function analysis https://blog.csdn.net/design_Lu/artic
 Object {
   "description": "生命周期指的是组件从初始化开始到结束的过程  或者是生命周期是描述组件从开始到结束的过程，每个组件都具有生命周期，都对组件通过生命周期给予的钩子函数进行管理。钩子函数	指的是系统某些状态和参数发生改变的时候，系统立马去通知对应处理的函数叫做vue的生命周期	所有的生命周期钩子自动绑定Vue的 this 上下文到实例中，因此可以访问数据，对属性和方法进行运算。这意味着 你不能使用箭头函...",
   "favicon": "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://blog.csdn.net/design_Lu/article/details/94870265&size=16",
-  "image": "https://images.weserv.nl/?url=https://img-blog.csdnimg.cn/20190706164418355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rlc2lnbl9MdQ==,size_16,color_FFFFFF,t_70",
+  "image": "https://img-blog.csdnimg.cn/20190706164418355.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Rlc2lnbl9MdQ==,size_16,color_FFFFFF,t_70",
   "title": "vue生命周期和react生命周期对比。",
   "url": "https://blog.csdn.net/design_Lu/article/details/94870265",
 }
@@ -24,7 +24,7 @@ exports[`get description function analysis https://juejin.cn/post/68449040098876
 Object {
   "description": "主要从githubstarts&issues量，npm下载量，使用方式，以及语法示例对三款测试框架做了一下较简单的比较Githubstars&issuesNpm下载量使用方式框架断言异步Mock代码覆",
   "favicon": "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://juejin.cn/post/6844904009887645709&size=16",
-  "image": undefined,
+  "image": "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/article-loading.fca922e.png",
   "title": "JS测试框架Jest/Mocha/Ava的简单比较",
   "url": "https://juejin.cn/post/6844904009887645709",
 }
@@ -54,7 +54,7 @@ exports[`get description function analysis https://www.jianshu.com/p/eec5e34ff0c
 Object {
   "description": "在 TypeScript 开发中，我们需要为开发的模块编写单元测试，可以使用 jest 这个框架。可参考 npm - jest 如果你已经有一个 TypeScript 项目，...",
   "favicon": "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.jianshu.com/p/eec5e34ff0c2&size=16",
-  "image": "https://images.weserv.nl/?url=https://upload-images.jianshu.io/upload_images/1362764-9e4cc8a17ba4048b.png",
+  "image": "https://upload-images.jianshu.io/upload_images/1362764-9e4cc8a17ba4048b.png",
   "title": "TypeScript + jest + VSCode 编写单元测试",
   "url": "https://www.jianshu.com/p/eec5e34ff0c2",
 }

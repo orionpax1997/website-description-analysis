@@ -87,16 +87,29 @@ export abstract class Analysis {
    */
   get image(): string | undefined {
     let img;
+    let article;
+    if (this.$('article').length > 0) {
+      article = this.$('article').first();
+    } else if (this.$('div[class*=content]').length > 0) {
+      article = this.$('div[class*=content]').first();
+    } else if (this.$('div[class*=Content]').length > 0) {
+      article = this.$('div[class*=content]').first();
+    }
     if (this.$('meta[name=og:image]').length === 1) {
       img = this.$('meta[name=og:image]').attr('content');
-    } else if (this.$('div[class*=content] p img').length > 0) {
-      img = this.$('div[class*=content] p img').first().attr('src');
-    } else if (this.$('div[class*=Content] p img').length > 0) {
-      img = this.$('div[class*=content] p img').first().attr('src');
-    } else {
+    } else if (this.$('meta[property=og:image]').length === 1) {
       img = this.$('meta[property=og:image]').attr('content');
+    } else if (article && article.find('p img').length > 0) {
+      img = article.find('p img').first().attr('src');
+    } else if (article && article.find('img').length > 0) {
+      img = article.find('img').first().attr('src');
     }
-    return img ? `https://images.weserv.nl/?url=${img}` : undefined;
+
+    // 相对路径转绝对路径
+    if (img && !img.startsWith('http')) {
+      img = resolve(this._url, img);
+    }
+    return img;
   }
 
   /**
@@ -151,4 +164,11 @@ async function curl(url: string): Promise<string> {
         reject(error);
       });
   });
+}
+
+/**
+ * 相对路径转绝对路径
+ */
+function resolve(url: string, relative: string): string {
+  return new URL(relative, url).toString();
 }
