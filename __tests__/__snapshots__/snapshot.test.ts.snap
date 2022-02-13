@@ -2,7 +2,7 @@
 
 exports[`get description function analysis https://blog.51cto.com/u_15349616/3717558 1`] = `
 Object {
-  "description": "Oracle导出导入dmp文件(exp.imp命令行)【附源码】，1.说明使用Oracle命令行导出导入dmp文件，从而在两个数据库之间快速转移数据，也可以用来作为数据库的备份，将来可以快速恢复数据。命令：导出exp、导入imp步骤：使用Oracle的exp命令将指定数据库导出为dmp文件;然后将dmp文件上传到需要导入的数据库所在服务器;使用Oracle的imp命令将dmp文件导入指定数据库。2.导出exp在Oracle数据库...",
+  "description": "Oracle导出导入dmp文件(exp.imp命令行)，1.说明使用Oracle命令行导出导入dmp文件，从而在两个数据库之间快速转移数据，也可以用来作为数据库的备份，将来可以快速恢复数据。命令：导出exp、导入imp步骤：使用Oracle的exp命令将指定数据库导出为dmp文件;然后将dmp文件上传到需要导入的数据库所在服务器;使用Oracle的imp命令将dmp文件导入指定数据库。2.导出exp在Oracle数据库...",
   "favicon": "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://blog.51cto.com/u_15349616/3717558&size=16",
   "image": "https://blog.51cto.com/qr/qr-url?url=https%3A%2F%2Fblog.51cto.com%2Fu_15349616%2F3717558",
   "title": "Oracle导出导入dmp文件(exp.imp命令行)",
@@ -24,7 +24,7 @@ exports[`get description function analysis https://juejin.cn/post/68449040098876
 Object {
   "description": "主要从githubstarts&issues量，npm下载量，使用方式，以及语法示例对三款测试框架做了一下较简单的比较Githubstars&issuesNpm下载量使用方式框架断言异步Mock代码覆",
   "favicon": "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://juejin.cn/post/6844904009887645709&size=16",
-  "image": "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/article-loading.fca922e.png",
+  "image": "https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/12/3/16eca535239e77d7~tplv-t2oaga2asx-image.image",
   "title": "JS测试框架Jest/Mocha/Ava的简单比较",
   "url": "https://juejin.cn/post/6844904009887645709",
 }

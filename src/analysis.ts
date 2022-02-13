@@ -77,9 +77,38 @@ export abstract class Analysis {
    * 获取 Description
    */
   get description(): string | undefined {
+    let article;
+    if (this.$('article').length > 0) {
+      article = this.$('article').first();
+    } else if (this.$('div[class*=content]').length > 0) {
+      article = this.$('div[class*=content]').first();
+    } else if (this.$('div[class*=Content]').length > 0) {
+      article = this.$('div[class*=content]').first();
+    }
     if (this.$('meta[property=og:description]').length === 1)
       return this.$('meta[property=og:description]').attr('content');
-    return this.$('meta[name=description]').attr('content');
+    else if (this.$('meta[name=description]').length === 1) {
+      return this.$('meta[name=description]').attr('content');
+    } else if (article && article.find('p').length > 0) {
+      const p = article
+        .find('p')
+        .toArray()
+        .find(p => {
+          this.$(p).text().trim().length > 120;
+        });
+      if (p) {
+        return this.$(p).text().trim().substring(0, 240);
+      }
+    }
+    if (this.$('body p').length > 0) {
+      const p = this.$('body p')
+        .toArray()
+        .find(p => this.$(p).text().trim().length > 120);
+      if (p) {
+        return this.$(p).text().trim().substring(0, 240);
+      }
+    }
+    return this.$('body').text().substring(0, 240);
   }
 
   /**
@@ -124,11 +153,18 @@ class AnalysisImpl extends Analysis {}
 
 class JueJinAnalysisImpl extends Analysis {
   private readonly titleRegExp: RegExp = /(?<=headline":")[^"]*/;
+  private readonly imageRegExp: RegExp = /(?<=src=\\")[^"]*/;
 
   get title(): string {
     const match = this.titleRegExp.exec(this._html);
     if (match) return match[0];
     return '';
+  }
+
+  get image(): string | undefined {
+    const match = this.imageRegExp.exec(this._html);
+    if (match) return unescape(match[0].replace(/\\u/g, '%u')).replace('\\', '');
+    return undefined;
   }
 }
 
@@ -151,15 +187,26 @@ export type AnalysisData = {
 async function curl(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
     (url.startsWith('https') ? https : http)
-      .get(url, res => {
-        let data = '';
-        res.on('data', function (chunk) {
-          data += chunk;
-        });
-        res.on('end', () => {
-          resolve(data);
-        });
-      })
+      .get(
+        url,
+        {
+          headers: {
+            accept:
+              'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'user-agent':
+              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
+          },
+        },
+        res => {
+          let data = '';
+          res.on('data', function (chunk) {
+            data += chunk;
+          });
+          res.on('end', () => {
+            resolve(data);
+          });
+        }
+      )
       .on('error', error => {
         reject(error);
       });
