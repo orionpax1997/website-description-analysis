@@ -134,6 +134,25 @@ export abstract class Analysis {
       img = article.find('img').first().attr('src');
     }
 
+    if (!img && this.$('img').length > 0) {
+      const item = this.$('img')
+        .toArray()
+        .find(item => this.$(item).parent()[0].tagName === 'p');
+      if (item) {
+        img = this.$(item).attr('src');
+      }
+    }
+    if (!img && this.$('img').length > 0) {
+      const item = this.$('img')
+        .toArray()
+        .find(
+          item => this.$(item).attr('src')?.indexOf('banner') !== -1 || this.$(item).attr('src')?.indexOf('logo') !== -1
+        );
+      if (item) {
+        img = this.$(item).attr('src');
+      }
+    }
+
     // 相对路径转绝对路径
     if (img && !img.startsWith('http')) {
       img = resolve(this._url, img);

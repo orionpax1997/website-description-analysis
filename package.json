@@ -1,6 +1,6 @@
 {
   "name": "@humble.xiang/website-description-analysis",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "一个解析网页描述信息小工具",
   "main": "dist/index.js",
   "author": "Humble.X",
