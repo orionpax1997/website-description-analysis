@@ -199,7 +199,7 @@ export type AnalysisData = {
   readonly title: string;
   readonly description: string | undefined;
   readonly image: string | undefined;
-  readonly favicon: string;
+  readonly favicon: string | undefined;
 };
 
 /**
