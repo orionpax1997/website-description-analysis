@@ -2,6 +2,7 @@ import http from 'http';
 import https from 'https';
 import * as cheerio from 'cheerio';
 import { CheerioAPI } from 'cheerio';
+import iconv from 'iconv-lite';
 
 /**
  * 解析工厂类
@@ -34,6 +35,9 @@ export abstract class Analysis {
    */
   async init(): Promise<Analysis> {
     this._html = await curl(this._url);
+    if (/<meta.*(gbk)+.*>/gi.test(this._html) && this._html.indexOf('�') !== -1) {
+      this._html = await curl(this._url, 'gbk');
+    }
     this.$ = cheerio.load(this._html);
     return this;
   }
@@ -203,26 +207,34 @@ export type AnalysisData = {
  * @param url 目标 URL
  * @returns 目标 HTML
  */
-async function curl(url: string): Promise<string> {
+async function curl(url: string, encoding?: string): Promise<string> {
   return new Promise((resolve, reject) => {
     (url.startsWith('https') ? https : http)
       .get(
         url,
         {
           headers: {
-            accept:
+            Accept:
               'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'user-agent':
               'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
+            Connection: 'keep-alive',
           },
         },
         res => {
           let data = '';
           res.on('data', function (chunk) {
-            data += chunk;
+            if (encoding) {
+              data += iconv.decode(chunk, encoding);
+            } else {
+              data += chunk;
+            }
           });
           res.on('end', () => {
             resolve(data);
+          });
+          res.on('error', error => {
+            reject(error);
           });
         }
       )
