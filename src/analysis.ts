@@ -223,6 +223,9 @@ async function curl(url: string, encoding?: string): Promise<string> {
         },
         res => {
           let data = '';
+          if (res.statusCode !== 200) {
+            reject(res.statusMessage);
+          }
           res.on('data', function (chunk) {
             if (encoding) {
               data += iconv.decode(chunk, encoding);
