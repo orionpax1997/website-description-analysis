@@ -68,6 +68,20 @@ export abstract class Analysis {
    * 获取 Title
    */
   get title(): string {
+    let article;
+    if (this.$('article').length > 0) {
+      article = this.$('article').first();
+    } else if (this.$('div[class*=content]').length > 0) {
+      article = this.$('div[class*=content]').first();
+    } else if (this.$('div[class*=Content]').length > 0) {
+      article = this.$('div[class*=content]').first();
+    }
+    if (this.$('meta[property=og:title]').length === 1) {
+      return this.$('meta[property=og:title]').attr('content') as string;
+    }
+    if (article && article.find('h1').length === 1) {
+      return article.find('h1').text().trim();
+    }
     if (this.$('h1[class*=title]').length === 1) return this.$('h1[class*=title]').text().trim();
     if (this.$('h1[class*=Title]').length === 1) return this.$('h1[class*=Title]').text().trim();
     if (this.$('.title').length === 1) return this.$('.title').text().trim();
@@ -168,7 +182,7 @@ export abstract class Analysis {
    * 获取 Favicon
    */
   get favicon(): string {
-    return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${this._url}&size=16`;
+    return `https://statics.dnspod.cn/proxy_favicon/_/favicon?domain=${new URL(this._url).host}`;
   }
 }
 
@@ -221,8 +235,11 @@ async function curl(url: string, encoding?: string): Promise<string> {
             Connection: 'keep-alive',
           },
         },
-        res => {
+        async res => {
           let data = '';
+          if (res.statusCode === 301) {
+            resolve(await curl(res.headers.location as string, encoding));
+          }
           if (res.statusCode !== 200) {
             reject(res.statusMessage);
           }
