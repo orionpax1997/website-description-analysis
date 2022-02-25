@@ -182,7 +182,7 @@ export abstract class Analysis {
    * 获取 Favicon
    */
   get favicon(): string {
-    return `https://statics.dnspod.cn/proxy_favicon/_/favicon?domain=${new URL(this._url).host}`;
+    return `https://statics.dnspod.cn/proxy_favicon/_/favicon?domain=${/^http(s)?:\/\/(.*?)\//.exec(this._url)?.[2]}`;
   }
 }
 
