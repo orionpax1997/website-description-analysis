@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`get description function analysis http://t.mb5u.com/html/ 1`] = `
+Object {
+  "description": "html参考手册,包括HTML4和HTML5手册。",
+  "favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABYUlEQVQ4jaWSQU7CUBCGv7YPK9IClaCwcGM8gntjVx5Aly5cGW7gTRpXHMALsNK4NPEALjTRmIBKYqAoBOh7zwXYtGlZGGc1b/6Z//9n8ozdi/Yx0AJ8/hbXQCCA1v7hgb+5vfWn6c/3D//+5hYB+BOnxtMwSjX0R5JwogAoF03qrpXC150agC8AxjOVURh+Sx5P6gDsXfWplcwUPp5pAARAlJ1HyXSe1xMTSKUzgJY6lef1JBxoBmHE1zhfRinFc3cav50Nk2pZJAgkhKHi9ayRS/Bymq7vtN9wSovc/HWgZL7FXEdSE6nEEaWCgjBoXvZSjb3zJkCmbtsGcrmtAFBa41Qt7KlCLc89GiWOqDWuaywsC5OCbaK0ThIApkGhaAGLDxOGM3RMALZbSK+hEzf4T4hVwJpt0Ai6cb4qTKCjBv0M4HqCimdR8SxcL6uznOkIIJg/3AEcrVKZ55c7QPADejmLwEGbWDEAAAAASUVORK5CYII=",
+  "image": undefined,
+  "title": "HTML参考手册",
+  "url": "http://t.mb5u.com/html/",
+}
+`;
+
 exports[`get description function analysis https://blog.51cto.com/u_15349616/3717558 1`] = `
 Object {
   "description": "Oracle导出导入dmp文件(exp.imp命令行)，1.说明使用Oracle命令行导出导入dmp文件，从而在两个数据库之间快速转移数据，也可以用来作为数据库的备份，将来可以快速恢复数据。命令：导出exp、导入imp步骤：使用Oracle的exp命令将指定数据库导出为dmp文件;然后将dmp文件上传到需要导入的数据库所在服务器;使用Oracle的imp命令将dmp文件导入指定数据库。2.导出exp在Oracle数据库...",

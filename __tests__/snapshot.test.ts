@@ -39,4 +39,9 @@ describe('get description function', () => {
     const analysisData = await (await AnalysisFactory.create('https://juejin.cn/post/6844904009887645709')).analysis();
     expect(analysisData).toMatchSnapshot();
   });
+
+  it('analysis http://t.mb5u.com/html/', async () => {
+    const analysisData = await (await AnalysisFactory.create('http://t.mb5u.com/html/')).analysis();
+    expect(analysisData).toMatchSnapshot();
+  });
 });
