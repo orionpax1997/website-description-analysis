@@ -1,5 +1,6 @@
 import http from 'http';
 import https from 'https';
+import request from 'request';
 import * as cheerio from 'cheerio';
 import { CheerioAPI } from 'cheerio';
 import iconv from 'iconv-lite';
@@ -47,13 +48,13 @@ export abstract class Analysis {
    * @returns 返回解析数据
    * @see AnalysisData
    */
-  analysis(): AnalysisData {
+  async analysis(): Promise<AnalysisData> {
     return {
       url: this.url,
       title: this.title,
       description: this.description,
       image: this.image,
-      favicon: this.favicon,
+      favicon: await getBase64(this.favicon),
     };
   }
 
@@ -182,7 +183,7 @@ export abstract class Analysis {
    * 获取 Favicon
    */
   get favicon(): string {
-    return `https://statics.dnspod.cn/proxy_favicon/_/favicon?domain=${/^http(s)?:\/\/(.*?)\//.exec(this._url)?.[2]}`;
+    return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${this._url}&size=16`;
   }
 }
 
@@ -269,4 +270,21 @@ async function curl(url: string, encoding?: string): Promise<string> {
  */
 function resolve(url: string, relative: string): string {
   return new URL(relative, url).toString();
+}
+
+/**
+ * 解析图片为 base64
+ * @param url 图片 URL
+ * @returns Base64 编码的图片
+ */
+async function getBase64(url: string): Promise<string | undefined> {
+  return new Promise(resolve =>
+    request({ url, encoding: null }, (error, response, body) => {
+      if (error || response.statusCode !== 200) {
+        resolve(undefined);
+      } else {
+        resolve(`data:${response.headers['content-type']};base64,${Buffer.from(body).toString('base64')}`);
+      }
+    })
+  );
 }
