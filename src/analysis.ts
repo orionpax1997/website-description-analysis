@@ -1,5 +1,3 @@
-import http from 'http';
-import https from 'https';
 import request from 'request';
 import * as cheerio from 'cheerio';
 import { CheerioAPI } from 'cheerio';
@@ -37,7 +35,7 @@ export abstract class Analysis {
   async init(): Promise<Analysis> {
     this._html = await curl(this._url);
     if (/<meta.*(gbk)+.*>/gi.test(this._html) && this._html.indexOf('�') !== -1) {
-      this._html = await curl(this._url, 'gbk');
+      this._html = await curl(this._url, 'gb2312');
     }
     this.$ = cheerio.load(this._html);
     return this;
@@ -223,46 +221,37 @@ export type AnalysisData = {
  * @returns 目标 HTML
  */
 async function curl(url: string, encoding?: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    (url.startsWith('https') ? https : http)
-      .get(
+  return new Promise((resolve, reject) =>
+    request(
+      {
         url,
-        {
-          headers: {
-            Accept:
-              'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'user-agent':
-              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
-            Connection: 'keep-alive',
-          },
+        headers: {
+          Accept:
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+          'user-agent':
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36',
+          Connection: 'keep-alive',
         },
-        async res => {
-          let data = '';
-          if (res.statusCode === 301) {
-            resolve(await curl(res.headers.location as string, encoding));
-          }
-          if (res.statusCode !== 200) {
-            reject(res.statusMessage);
-          }
-          res.on('data', function (chunk) {
-            if (encoding) {
-              data += iconv.decode(chunk, encoding);
-            } else {
-              data += chunk;
-            }
-          });
-          res.on('end', () => {
-            resolve(data);
-          });
-          res.on('error', error => {
-            reject(error);
-          });
+        encoding: encoding !== undefined ? null : 'utf-8',
+      },
+      async (error, res, body) => {
+        if (error) {
+          reject(error);
         }
-      )
-      .on('error', error => {
-        reject(error);
-      });
-  });
+        if (res.statusCode === 301) {
+          resolve(await curl(res.headers.location as string, encoding));
+        }
+        if (res.statusCode !== 200) {
+          reject(res.statusMessage);
+        }
+        if (encoding) {
+          resolve(iconv.decode(body, encoding));
+        } else {
+          resolve(body);
+        }
+      }
+    )
+  );
 }
 
 /**
