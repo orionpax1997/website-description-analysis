@@ -5,8 +5,15 @@ import iconv from 'iconv-lite';
 
 /**
  * 解析工厂类
+ * @author Humble.X
  */
 export class AnalysisFactory {
+  /**
+   * 解析实例创建方法
+   * @param url 要解析的网页地址
+   * @returns 返回负责解析的实例
+   * @author Humble.X
+   */
   static async create(url: string): Promise<Analysis> {
     if (url.indexOf('juejin') !== -1) return await new JueJinAnalysisImpl(url).init();
     return await new AnalysisImpl(url).init();
@@ -15,13 +22,14 @@ export class AnalysisFactory {
 
 /**
  * 解析类
+ * @author Humble.X
  */
 export abstract class Analysis {
-  // 目标 URL
+  /** 目标 URL */
   private readonly _url: string;
-  // 目标 HTML
+  /** 目标 HTML */
   protected _html!: string;
-  // CheerioAPI 对象
+  /** CheerioAPI 对象 */
   private $!: CheerioAPI;
 
   constructor(url: string) {
@@ -31,11 +39,12 @@ export abstract class Analysis {
   /**
    * 初始化方法
    * @returns 返回解析类本身
+   * @author Humble.X
    */
   async init(): Promise<Analysis> {
     this._html = await curl(this._url);
     if (/<meta.*(gbk)+.*>/gi.test(this._html) && this._html.indexOf('�') !== -1) {
-      this._html = await curl(this._url, 'gb2312');
+      this._html = await curl(this._url, 'gbk');
     }
     this.$ = cheerio.load(this._html);
     return this;
@@ -45,6 +54,7 @@ export abstract class Analysis {
    * 解析方法
    * @returns 返回解析数据
    * @see AnalysisData
+   * @author Humble.X
    */
   async analysis(): Promise<AnalysisData> {
     return {
@@ -57,14 +67,16 @@ export abstract class Analysis {
   }
 
   /**
-   * 获取 URL
+   * get URL
+   * @author Humble.X
    */
   get url(): string {
     return this._url;
   }
 
   /**
-   * 获取 Title
+   * 解析 Title
+   * @author Humble.X
    */
   get title(): string {
     let article;
@@ -91,7 +103,8 @@ export abstract class Analysis {
   }
 
   /**
-   * 获取 Description
+   * 解析 Description
+   * @author Humble.X
    */
   get description(): string | undefined {
     let article;
@@ -129,7 +142,8 @@ export abstract class Analysis {
   }
 
   /**
-   * 获取分享图或文章首张图片
+   * 解析分享图或文章首张图片
+   * @author Humble.X
    */
   get image(): string | undefined {
     let img;
@@ -178,25 +192,42 @@ export abstract class Analysis {
   }
 
   /**
-   * 获取 Favicon
+   * 解析 Favicon
+   * @author Humble.X
    */
   get favicon(): string {
     return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${this._url}&size=16`;
   }
 }
 
+/**
+ * 默认实现类
+ */
 class AnalysisImpl extends Analysis {}
 
+/**
+ * 掘金的实现类
+ * @see https://juejin.cn/
+ * @author Humble.X
+ */
 class JueJinAnalysisImpl extends Analysis {
   private readonly titleRegExp: RegExp = /(?<=headline":")[^"]*/;
   private readonly imageRegExp: RegExp = /(?<=src=\\")[^"]*/;
 
+  /**
+   * 获取 Title
+   * @author Humble.X
+   */
   get title(): string {
     const match = this.titleRegExp.exec(this._html);
     if (match) return match[0];
     return '';
   }
 
+  /**
+   * @author Humble.X
+   * 获取分享图或文章首张图片
+   */
   get image(): string | undefined {
     const match = this.imageRegExp.exec(this._html);
     if (match) return unescape(match[0].replace(/\\u/g, '%u')).replace('\\', '');
@@ -206,12 +237,19 @@ class JueJinAnalysisImpl extends Analysis {
 
 /**
  * 解析数据对象
+ * @see Analysis.analysis
+ * @author Humble.X
  */
 export type AnalysisData = {
+  /** 网站 URL */
   readonly url: string;
+  /** 网站标题 */
   readonly title: string;
+  /** 网站描述信息 */
   readonly description: string | undefined;
+  /** 网站分享图或正文第一张图片 */
   readonly image: string | undefined;
+  /** 网站 Favicon */
   readonly favicon: string | undefined;
 };
 
@@ -219,6 +257,7 @@ export type AnalysisData = {
  * 获取目标 URL 的 HTML 代码
  * @param url 目标 URL
  * @returns 目标 HTML
+ * @author Humble.X
  */
 async function curl(url: string, encoding?: string): Promise<string> {
   return new Promise((resolve, reject) =>
@@ -256,6 +295,7 @@ async function curl(url: string, encoding?: string): Promise<string> {
 
 /**
  * 相对路径转绝对路径
+ * @author Humble.X
  */
 function resolve(url: string, relative: string): string {
   return new URL(relative, url).toString();
@@ -265,6 +305,7 @@ function resolve(url: string, relative: string): string {
  * 解析图片为 base64
  * @param url 图片 URL
  * @returns Base64 编码的图片
+ * @author Humble.X
  */
 async function getBase64(url: string): Promise<string | undefined> {
   return new Promise(resolve =>
