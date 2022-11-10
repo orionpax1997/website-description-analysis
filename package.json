@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx tsc && node dist/index.js",
+    "docs": "yarn typedoc ./src/analysis.ts --readme ./README.md --out ./docs",
     "lint": "eslint src --ext .ts",
     "prepare": "husky install",
     "test": "jest --watch",

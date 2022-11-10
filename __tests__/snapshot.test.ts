@@ -20,11 +20,6 @@ describe('get description function', () => {
     expect(analysisData).toMatchSnapshot();
   });
 
-  it('analysis https://segmentfault.com/a/1190000020387433', async () => {
-    const analysisData = await (await AnalysisFactory.create('https://segmentfault.com/a/1190000020387433')).analysis();
-    expect(analysisData).toMatchSnapshot({ image: expect.any(String) });
-  });
-
   it('analysis https://www.jianshu.com/p/eec5e34ff0c2', async () => {
     const analysisData = await (await AnalysisFactory.create('https://www.jianshu.com/p/eec5e34ff0c2')).analysis();
     expect(analysisData).toMatchSnapshot();

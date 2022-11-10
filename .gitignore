@@ -1,6 +1,7 @@
 .DS_STORE
 
 dist/
+docs/
 bin/
 node_modules/
 
