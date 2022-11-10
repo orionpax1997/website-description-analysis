@@ -50,4 +50,4 @@ import AnalysisFactory from '@humble.xiang/website-description-analysis';
 
 ## Documentation
 
-[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.vercel.app/api/screenshot?url=https://website-description-analysis-docs.vercel.app/)](https://website-description-analysis-docs.vercel.app/)
+[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.humblex.top/api/screenshot?url=https://website-description-analysis-docs.humblex.top/)](https://website-description-analysis-docs.humblex.top/)
