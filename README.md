@@ -2,7 +2,7 @@
 
 A small tool for parsing web page description information.
 
-[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.humblex.top/api/screenshot?url=https://humble-blog.humblex.top/website-description-analysis/)](https://humble-blog.humblex.top/website-description-analysis/)
+[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.humblex.top/api/screenshot?url=https://blog.humblex.top/website-description-analysis/)](https://blog.humblex.top/website-description-analysis/)
 
 ## Installation
 
