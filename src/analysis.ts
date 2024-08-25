@@ -2,6 +2,7 @@ import request from 'request';
 import * as cheerio from 'cheerio';
 import { CheerioAPI } from 'cheerio';
 import iconv from 'iconv-lite';
+import { getBrowser } from './browser';
 
 /**
  * 解析工厂类
@@ -16,6 +17,7 @@ export class AnalysisFactory {
    */
   static async create(url: string): Promise<Analysis> {
     if (url.indexOf('juejin') !== -1) return await new JueJinAnalysisImpl(url).init();
+    if (url.indexOf('segmentfault') !== -1) return await new SegmentfaultAnalysisImpl(url).init();
     return await new AnalysisImpl(url).init();
   }
 }
@@ -26,11 +28,11 @@ export class AnalysisFactory {
  */
 export abstract class Analysis {
   /** 目标 URL */
-  private readonly _url: string;
+  protected readonly _url: string;
   /** 目标 HTML */
   protected _html!: string;
   /** CheerioAPI 对象 */
-  private $!: CheerioAPI;
+  protected $!: CheerioAPI;
 
   constructor(url: string) {
     this._url = url;
@@ -236,6 +238,32 @@ class JueJinAnalysisImpl extends Analysis {
 }
 
 /**
+ * Segmentfault 的实现类
+ * @see https://segmentfault.com
+ * @author Humble.X
+ */
+class SegmentfaultAnalysisImpl extends Analysis {
+  /**
+   * 初始化方法
+   * @returns 返回解析类本身
+   * @author Humble.X
+   */
+  async init(): Promise<Analysis> {
+    this._html = await getHtml(this._url);
+    this.$ = cheerio.load(this._html);
+    return this;
+  }
+
+  get description(): string | undefined {
+    return this.$('meta[name=description]').attr('content');
+  }
+
+  get image(): string | undefined {
+    return undefined;
+  }
+}
+
+/**
  * 解析数据对象
  * @see Analysis.analysis
  * @author Humble.X
@@ -291,6 +319,16 @@ async function curl(url: string, encoding?: string): Promise<string> {
       }
     )
   );
+}
+
+async function getHtml(url: string) {
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  await page.goto(url);
+  await page.waitForNavigation();
+  const pageContent = await page.content();
+  await page.close();
+  return pageContent;
 }
 
 /**

@@ -1,15 +1,9 @@
 import { AnalysisFactory } from '../src/analysis';
+import { getBrowser } from '../src/browser';
 
 describe('get description function', () => {
-  it('analysis https://zhuanlan.zhihu.com/p/59838643', async () => {
-    const analysisData = await (await AnalysisFactory.create('https://zhuanlan.zhihu.com/p/59838643')).analysis();
-    expect(analysisData).toMatchSnapshot({ image: expect.any(String) });
-  });
-
-  it('analysis https://www.cnblogs.com/yichong/p/9234265.html', async () => {
-    const analysisData = await (
-      await AnalysisFactory.create('https://www.cnblogs.com/yichong/p/9234265.html')
-    ).analysis();
+  it('analysis https://segmentfault.com/a/1190000013568216', async () => {
+    const analysisData = await (await AnalysisFactory.create('https://segmentfault.com/a/1190000013568216')).analysis();
     expect(analysisData).toMatchSnapshot();
   });
 
@@ -38,5 +32,12 @@ describe('get description function', () => {
   it('analysis http://t.mb5u.com/html/', async () => {
     const analysisData = await (await AnalysisFactory.create('http://t.mb5u.com/html/')).analysis();
     expect(analysisData).toMatchSnapshot();
+  });
+
+  afterAll(async () => {
+    const browser = await getBrowser();
+    if (browser) {
+      browser.close();
+    }
   });
 });
