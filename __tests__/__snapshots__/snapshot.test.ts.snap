@@ -57,13 +57,3 @@ exports[`get description function analysis https://www.jianshu.com/p/eec5e34ff0c
   "url": "https://www.jianshu.com/p/eec5e34ff0c2",
 }
 `;
-
-exports[`get description function analysis https://www.jianshu.com/p/eec5e34ff0c2 2`] = `
-{
-  "description": "在 TypeScript 开发中，我们需要为开发的模块编写单元测试，可以使用 jest 这个框架。可参考 npm - jest 如果你已经有一个 TypeScript 项目，...",
-  "favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAOVBMVEXlYEj76OXiQBj99PL////lYEjtlIXnYkjkW0HkUjXsiXn41M763tnmX0boc17gLwDyt67tmIrobVcZOABUAAAACHRSTlPq////////MiIP05YAAACBSURBVBiVXY9bEsMgDAMxVojFu7n/YYtpp5Nmv9COwSic4bgRzrCysa0zuY3njEZSanS3BFUgklAhlUsQc9QZ0QfynmjX1KyOSDa/cjRNV3eQXNgLo2BR41ckxFrGKHITBar4E8+J9QVBjr9HuekJe63lslvYlMldxvhpajTPz/pvg+IGkoY/qWQAAAAASUVORK5CYII=",
-  "image": "https://upload-images.jianshu.io/upload_images/1362764-9e4cc8a17ba4048b.png",
-  "title": "TypeScript + jest + VSCode 编写单元测试",
-  "url": "https://www.jianshu.com/p/eec5e34ff0c2",
-}
-`;
