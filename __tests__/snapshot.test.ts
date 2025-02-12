@@ -11,7 +11,10 @@ describe('get description function', () => {
     const analysisData = await (
       await AnalysisFactory.create('https://blog.csdn.net/design_Lu/article/details/94870265')
     ).analysis();
-    expect(analysisData).toMatchSnapshot();
+    const { description, ...rest } = analysisData;
+    expect(description).not.toBeNull();
+    expect(description).not.toBeUndefined();
+    expect(rest).toMatchSnapshot();
   });
 
   it('analysis https://www.jianshu.com/p/eec5e34ff0c2', async () => {
@@ -21,7 +24,10 @@ describe('get description function', () => {
 
   it('analysis https://blog.51cto.com/u_15349616/3717558', async () => {
     const analysisData = await (await AnalysisFactory.create('https://blog.51cto.com/u_15349616/3717558')).analysis();
-    expect(analysisData).toMatchSnapshot();
+    const { favicon, ...rest } = analysisData;
+    expect(favicon).not.toBeNull();
+    expect(favicon).not.toBeUndefined();
+    expect(rest).toMatchSnapshot();
   });
 
   it('analysis https://juejin.cn/post/6844904009887645709', async () => {

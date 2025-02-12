@@ -2,24 +2,24 @@
 
 A small tool for parsing web page description information.
 
-[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.humblex.top/api/screenshot?url=https://blog.humblex.top/website-description-analysis/)](https://blog.humblex.top/website-description-analysis/)
+[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.vercel.app/api/screenshot?url=https://orionpax.vercel.app/website-description-analysis/)](https://orionpax.vercel.app/website-description-analysis/)
 
 ## Installation
 
 ```bash
-yarn add @humble.xiang/website-description-analysis
+yarn add @orionpax/website-description-analysis
 # or
-npm i @humble.xiang/website-description-analysis
+npm i @orionpax/website-description-analysis
 ```
 
 ## Usage
 
 ```js
 // CommonJS require
-const AnalysisFactory = require('@humble.xiang/website-description-analysis');
+const AnalysisFactory = require('@orionpax/website-description-analysis');
 // OR
 // ES6 import
-import AnalysisFactory from '@humble.xiang/website-description-analysis';
+import AnalysisFactory from '@orionpax/website-description-analysis';
 ```
 
 ```js
@@ -50,4 +50,4 @@ import AnalysisFactory from '@humble.xiang/website-description-analysis';
 
 ## Documentation
 
-[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.humblex.top/api/screenshot?url=https://website-description-analysis-docs.humblex.top/)](https://website-description-analysis-docs.humblex.top/)
+[![使用 Website Description Analysis 解析网页简介信息](https://website-card-embed.vercel.app/api/screenshot?url=https://website-description-analysis-docs.humblex.top/)](https://website-description-analysis-docs.humblex.top/)

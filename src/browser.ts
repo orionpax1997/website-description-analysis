@@ -6,7 +6,7 @@ let _browser: core.Browser | null;
 
 const exePath =
   process.platform === 'win32'
-    ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+    ? 'C:\\Users\\Administrator\\scoop\\apps\\google-chrome\\current\\chrome.exe'
     : process.platform === 'linux'
     ? '/usr/bin/google-chrome'
     : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -22,7 +22,7 @@ async function getOptions() {
   if (isDev) {
     options = {
       executablePath: exePath,
-      headless: true,
+      headless: false,
       args: [],
     };
   } else {

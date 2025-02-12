@@ -6,14 +6,14 @@ import { getBrowser } from './browser';
 
 /**
  * 解析工厂类
- * @author Humble.X
+ * @author OrionPax
  */
 export class AnalysisFactory {
   /**
    * 解析实例创建方法
    * @param url 要解析的网页地址
    * @returns 返回负责解析的实例
-   * @author Humble.X
+   * @author OrionPax
    */
   static async create(url: string): Promise<Analysis> {
     if (url.indexOf('juejin') !== -1) return await new JueJinAnalysisImpl(url).init();
@@ -24,7 +24,7 @@ export class AnalysisFactory {
 
 /**
  * 解析类
- * @author Humble.X
+ * @author OrionPax
  */
 export abstract class Analysis {
   /** 目标 URL */
@@ -41,7 +41,7 @@ export abstract class Analysis {
   /**
    * 初始化方法
    * @returns 返回解析类本身
-   * @author Humble.X
+   * @author OrionPax
    */
   async init(): Promise<Analysis> {
     this._html = await curl(this._url);
@@ -56,7 +56,7 @@ export abstract class Analysis {
    * 解析方法
    * @returns 返回解析数据
    * @see AnalysisData
-   * @author Humble.X
+   * @author OrionPax
    */
   async analysis(): Promise<AnalysisData> {
     return {
@@ -70,7 +70,7 @@ export abstract class Analysis {
 
   /**
    * get URL
-   * @author Humble.X
+   * @author OrionPax
    */
   get url(): string {
     return this._url;
@@ -78,7 +78,7 @@ export abstract class Analysis {
 
   /**
    * 解析 Title
-   * @author Humble.X
+   * @author OrionPax
    */
   get title(): string {
     let article;
@@ -106,7 +106,7 @@ export abstract class Analysis {
 
   /**
    * 解析 Description
-   * @author Humble.X
+   * @author OrionPax
    */
   get description(): string | undefined {
     let article;
@@ -145,7 +145,7 @@ export abstract class Analysis {
 
   /**
    * 解析分享图或文章首张图片
-   * @author Humble.X
+   * @author OrionPax
    */
   get image(): string | undefined {
     let img;
@@ -195,7 +195,7 @@ export abstract class Analysis {
 
   /**
    * 解析 Favicon
-   * @author Humble.X
+   * @author OrionPax
    */
   get favicon(): string {
     return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${this._url}&size=16`;
@@ -210,7 +210,7 @@ class AnalysisImpl extends Analysis {}
 /**
  * 掘金的实现类
  * @see https://juejin.cn/
- * @author Humble.X
+ * @author OrionPax
  */
 class JueJinAnalysisImpl extends Analysis {
   private readonly titleRegExp: RegExp = /(?<=headline":")[^"]*/;
@@ -218,7 +218,7 @@ class JueJinAnalysisImpl extends Analysis {
 
   /**
    * 获取 Title
-   * @author Humble.X
+   * @author OrionPax
    */
   get title(): string {
     const match = this.titleRegExp.exec(this._html);
@@ -227,7 +227,7 @@ class JueJinAnalysisImpl extends Analysis {
   }
 
   /**
-   * @author Humble.X
+   * @author OrionPax
    * 获取分享图或文章首张图片
    */
   get image(): string | undefined {
@@ -240,16 +240,16 @@ class JueJinAnalysisImpl extends Analysis {
 /**
  * Segmentfault 的实现类
  * @see https://segmentfault.com
- * @author Humble.X
+ * @author OrionPax
  */
 class SegmentfaultAnalysisImpl extends Analysis {
   /**
    * 初始化方法
    * @returns 返回解析类本身
-   * @author Humble.X
+   * @author OrionPax
    */
   async init(): Promise<Analysis> {
-    this._html = await getHtml(this._url);
+    this._html = await getHtml(this._url, '.container');
     this.$ = cheerio.load(this._html);
     return this;
   }
@@ -266,7 +266,7 @@ class SegmentfaultAnalysisImpl extends Analysis {
 /**
  * 解析数据对象
  * @see Analysis.analysis
- * @author Humble.X
+ * @author OrionPax
  */
 export type AnalysisData = {
   /** 网站 URL */
@@ -285,7 +285,7 @@ export type AnalysisData = {
  * 获取目标 URL 的 HTML 代码
  * @param url 目标 URL
  * @returns 目标 HTML
- * @author Humble.X
+ * @author OrionPax
  */
 async function curl(url: string, encoding?: string): Promise<string> {
   return new Promise((resolve, reject) =>
@@ -321,11 +321,11 @@ async function curl(url: string, encoding?: string): Promise<string> {
   );
 }
 
-async function getHtml(url: string) {
+async function getHtml(url: string, selector: string) {
   const browser = await getBrowser();
   const page = await browser.newPage();
   await page.goto(url);
-  await page.waitForNavigation();
+  await page.waitForSelector(selector, { visible: true });
   const pageContent = await page.content();
   await page.close();
   return pageContent;
@@ -333,7 +333,7 @@ async function getHtml(url: string) {
 
 /**
  * 相对路径转绝对路径
- * @author Humble.X
+ * @author OrionPax
  */
 function resolve(url: string, relative: string): string {
   return new URL(relative, url).toString();
@@ -343,7 +343,7 @@ function resolve(url: string, relative: string): string {
  * 解析图片为 base64
  * @param url 图片 URL
  * @returns Base64 编码的图片
- * @author Humble.X
+ * @author OrionPax
  */
 async function getBase64(url: string): Promise<string | undefined> {
   return new Promise(resolve =>

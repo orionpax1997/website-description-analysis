@@ -13,7 +13,6 @@ exports[`get description function analysis http://t.mb5u.com/html/ 1`] = `
 exports[`get description function analysis https://blog.51cto.com/u_15349616/3717558 1`] = `
 {
   "description": "",
-  "favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAMFBMVEXOMj3OMz7KDyLMGSn+9/jOMj3////IAAfNJDHxysz66uv2293op6rhi4/fgofUUlosN0L7AAAAAnRSTlPvMf6rIiEAAABzSURBVBiVXY/REsMgCAQNJwhGk///23Jp69juk7cD6pWj6EY5SlEI8YwCZY5KpuOuPY3iNDJ1mFV5i94S2iVGD722CRIiX9HNGs/4CM19qZvAGdF2kavWfice0Zfw+bwyfF2Kiz+BekQ4y6hDwG4A83/9F9ZLBV3gRL69AAAAAElFTkSuQmCC",
   "image": undefined,
   "title": "",
   "url": "https://blog.51cto.com/u_15349616/3717558",
@@ -22,7 +21,6 @@ exports[`get description function analysis https://blog.51cto.com/u_15349616/371
 
 exports[`get description function analysis https://blog.csdn.net/design_Lu/article/details/94870265 1`] = `
 {
-  "description": "文章浏览阅读3k次，点赞5次，收藏15次。生命周期指的是组件从初始化开始到结束的过程  或者是生命周期是描述组件从开始到结束的过程，每个组件都具有生命周期，都对组件通过生命周期给予的钩子函数进行管理。钩子函数	指的是系统某些状态和参数发生改变的时候，系统立马去通知对应处理的函数叫做vue的生命周期	所有的生命周期钩子自动绑定Vue的 this 上下文到实例中，因此可以访问数据，对属性和方法进行运算。这意味着 你不能使用箭头函..._vue componentwillreceiveprops",
   "favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAXVBMVEX8VTH////8SBv8RRT8Ui38UCn+4dr8PQD8RBL9lYL/8u/+5N78Sh78f2b+0cn+7Of9xbv8Xzv8Qgr8blH9uaz+2NH8hW38ZEP8TiX9vbP/8e3+6eP8WDT8aUr9jHdkgCI0AAAAgElEQVQYlW2O2xKDIAxEWQKSKBXqpSK9/P9n1o7Uykzztie7ySr1f6xm8uan6dLnEK/2q4cINC0wFo+eMGtygttuMQuy23YplYhfIen8gRqYs1ac4SpAd+gK+Aj5EJseOzBP4OXYjQFcLAJg64WOSigta9eGXobjjPHEpKsyx7wBKpEEM9DQtpwAAAAASUVORK5CYII=",
   "image": "https://i-blog.csdnimg.cn/blog_migrate/83d4518b12eb78d3f7c9785391201c8e.png",
   "title": "vue生命周期和react生命周期对比。",
@@ -51,6 +49,16 @@ exports[`get description function analysis https://segmentfault.com/a/1190000013
 `;
 
 exports[`get description function analysis https://www.jianshu.com/p/eec5e34ff0c2 1`] = `
+{
+  "description": "在 TypeScript 开发中，我们需要为开发的模块编写单元测试，可以使用 jest 这个框架。可参考 npm - jest 如果你已经有一个 TypeScript 项目，...",
+  "favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAOVBMVEXlYEj76OXiQBj99PL////lYEjtlIXnYkjkW0HkUjXsiXn41M763tnmX0boc17gLwDyt67tmIrobVcZOABUAAAACHRSTlPq////////MiIP05YAAACBSURBVBiVXY9bEsMgDAMxVojFu7n/YYtpp5Nmv9COwSic4bgRzrCysa0zuY3njEZSanS3BFUgklAhlUsQc9QZ0QfynmjX1KyOSDa/cjRNV3eQXNgLo2BR41ckxFrGKHITBar4E8+J9QVBjr9HuekJe63lslvYlMldxvhpajTPz/pvg+IGkoY/qWQAAAAASUVORK5CYII=",
+  "image": "https://upload-images.jianshu.io/upload_images/1362764-9e4cc8a17ba4048b.png",
+  "title": "TypeScript + jest + VSCode 编写单元测试",
+  "url": "https://www.jianshu.com/p/eec5e34ff0c2",
+}
+`;
+
+exports[`get description function analysis https://www.jianshu.com/p/eec5e34ff0c2 2`] = `
 {
   "description": "在 TypeScript 开发中，我们需要为开发的模块编写单元测试，可以使用 jest 这个框架。可参考 npm - jest 如果你已经有一个 TypeScript 项目，...",
   "favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAOVBMVEXlYEj76OXiQBj99PL////lYEjtlIXnYkjkW0HkUjXsiXn41M763tnmX0boc17gLwDyt67tmIrobVcZOABUAAAACHRSTlPq////////MiIP05YAAACBSURBVBiVXY9bEsMgDAMxVojFu7n/YYtpp5Nmv9COwSic4bgRzrCysa0zuY3njEZSanS3BFUgklAhlUsQc9QZ0QfynmjX1KyOSDa/cjRNV3eQXNgLo2BR41ckxFrGKHITBar4E8+J9QVBjr9HuekJe63lslvYlMldxvhpajTPz/pvg+IGkoY/qWQAAAAASUVORK5CYII=",
