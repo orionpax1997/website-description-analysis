@@ -156,6 +156,8 @@ export abstract class Analysis {
       article = this.$('div[class*=content]').first();
     } else if (this.$('div[class*=Content]').length > 0) {
       article = this.$('div[class*=content]').first();
+    } else if (this.$('div[class*=article-wrap]').length > 0) {
+      article = this.$('div[class*=article-wrap]').first();
     }
     if (this.$('meta[name=og:image]').length === 1) {
       img = this.$('meta[name=og:image]').attr('content');
@@ -259,7 +261,42 @@ class SegmentfaultAnalysisImpl extends Analysis {
   }
 
   get image(): string | undefined {
-    return undefined;
+    let img;
+    let article;
+    if (this.$('div[class*=article-wrap]').length > 0) {
+      article = this.$('div[class*=article-wrap]').first();
+    }
+
+    if (article && article.find('p img').length > 0) {
+      img = article.find('p img').first().attr('src');
+    } else if (article && article.find('img').length > 0) {
+      img = article.find('img').first().attr('src');
+    }
+
+    if (!img && this.$('img').length > 0) {
+      const item = this.$('img')
+        .toArray()
+        .find(item => this.$(item).parent()[0].tagName === 'p');
+      if (item) {
+        img = this.$(item).attr('src');
+      }
+    }
+    if (!img && this.$('img').length > 0) {
+      const item = this.$('img')
+        .toArray()
+        .find(
+          item => this.$(item).attr('src')?.indexOf('banner') !== -1 || this.$(item).attr('src')?.indexOf('logo') !== -1
+        );
+      if (item) {
+        img = this.$(item).attr('src');
+      }
+    }
+
+    // 相对路径转绝对路径
+    if (img && !img.startsWith('http')) {
+      img = resolve(this._url, img);
+    }
+    return img;
   }
 }
 

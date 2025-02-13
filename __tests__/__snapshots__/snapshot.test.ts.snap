@@ -42,7 +42,7 @@ exports[`get description function analysis https://segmentfault.com/a/1190000013
 {
   "description": "Hibernate是一种ORM框架，全称为 Object_Relative DateBase-Mapping，在Java对象与关系数据库之间建立某种映射，以实现直接存取Java对象！",
   "favicon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAALVBMVEUAmmEAmmAAlFX///8Aj0s+roHI6Nuu2cYhpXL1/ftZtY7p+POc1r+Ax6pvu5gxFaaeAAAAAXRSTlO7HFWyYgAAAGxJREFUGJVVj0sSgDAIQ0vSQj/q/Y8rYkdbFjB587IgJdkmLRk+Tv58kgMLEFKPFRQyzwpKEQSQALWRPKov2lOBUrv1ak4vmQAu16/iZWocvADituIHBbm7/gG0ZmMzurZhLqpOML+SWNu7kW9dnQK2J4kwSgAAAABJRU5ErkJggg==",
-  "image": undefined,
+  "image": "https://segmentfault.com/img/remote/1460000013568219?w=1373&h=652",
   "title": "Hibernate入门这一篇就够了",
   "url": "https://segmentfault.com/a/1190000013568216",
 }
