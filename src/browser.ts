@@ -1,8 +1,8 @@
-import chrome from 'chrome-aws-lambda';
-import core from 'puppeteer-core';
+import chromium from '@sparticuz/chromium';
+import core, { Browser } from 'puppeteer-core';
 
 const isDev = !process.env.AWS_REGION;
-let _browser: core.Browser | null;
+let _browser: Browser | null;
 
 const exePath =
   process.platform === 'win32'
@@ -27,9 +27,9 @@ async function getOptions() {
     };
   } else {
     options = {
-      args: chrome.args,
-      executablePath: await chrome.executablePath,
-      headless: chrome.headless,
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: true,
     };
   }
   return options;
