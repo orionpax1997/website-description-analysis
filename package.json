@@ -1,12 +1,13 @@
 {
   "name": "@orionpax/website-description-analysis",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "一个解析网页描述信息的小工具",
   "main": "dist/index.js",
   "author": "OrionPax",
   "license": "MIT",
   "scripts": {
     "dev": "npx tsc && node dist/index.js",
+    "build": "npx tsc",
     "docs": "yarn typedoc ./src/analysis.ts --readme ./README.md --out ./docs",
     "lint": "eslint src --ext .ts",
     "prepare": "husky install",
